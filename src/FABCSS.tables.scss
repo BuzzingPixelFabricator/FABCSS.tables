@@ -1,0 +1,110 @@
+/*----------------------------------------------------------------------------*\
+    # Copyright 2017, BuzzingPixel, LLC
+
+    # This program is free software: you can redistribute it and/or modify
+    # it under the terms of the Apache License 2.0.
+    # http://www.apache.org/licenses/LICENSE-2.0
+\*----------------------------------------------------------------------------*/
+
+
+/**
+ * Variables
+ */
+$tableBordered: true !default;
+$tableStriped: true !default;
+$tableCellBorderColor: lighten(#000, 90%) !default;
+$tableStripedPosition: odd !default; // even, odd
+$tableStripedBackground: lighten(#000, 96%) !default;
+$tableFontSize: false !default;
+$tableMarginBottom: 20px !default;
+$tableCellLineHeight: false !default;
+$tableCellPaddingHorizontal: 16px !default;
+$tableCellPaddingVertical: 6px !default;
+$thColor: lighten(#000, 25%) !default;
+$tableCaptionBackground: lighten(#000, 96%) !default;
+$tableCaptionFontStyle: italic !default;
+$tableCaptionPaddingVertical: 12px !default;
+$tableCaptionPaddingHorizontal: $tableCellPaddingHorizontal !default;
+
+
+/**
+ * Table styling
+ */
+
+@mixin fab-table-bordered {
+    @if $tableBordered {
+        border-bottom: 1px solid $tableCellBorderColor;
+
+        .caption {
+            border: 1px solid $tableCellBorderColor;
+            border-bottom: 0;
+        }
+
+        .td,
+        .th {
+            border-right: 1px solid $tableCellBorderColor;
+            border-top: 1px solid $tableCellBorderColor;
+            &:first-child {
+                border-left: 1px solid $tableCellBorderColor;
+            }
+        }
+    }
+}
+
+@mixin fab-table-striped {
+    @if $tableStriped {
+        .tbody .tr:nth-child(#{$tableStripedPosition}) .td {
+            background-color: $tableStripedBackground;
+        }
+    }
+}
+
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    margin-bottom: $tableMarginBottom;
+    min-width: 100%;
+    table-layout: fixed;
+    word-wrap: break-word;
+
+    @include fab-table-bordered();
+    @include fab-table-striped();
+
+    @if $tableFontSize != false {
+        font-size: $tableFontSize;
+    }
+}
+
+.td,
+.th {
+    text-align: left;
+    padding-bottom: $tableCellPaddingVertical;
+    padding-left: $tableCellPaddingHorizontal;
+    padding-right: $tableCellPaddingHorizontal;
+    padding-top: $tableCellPaddingVertical;
+    vertical-align: top;
+
+    @if $tableCellLineHeight != false {
+        line-height: $tableCellLineHeight;
+    }
+}
+
+.thead,
+.tfoot {
+    font-weight: bold;
+
+    .th {
+        color: $thColor;
+        vertical-align: bottom;
+    }
+}
+
+.caption {
+    background-color: $tableCaptionBackground;
+    font-style: $tableCaptionFontStyle;
+    padding-bottom: $tableCaptionPaddingVertical;
+    padding-left: $tableCaptionPaddingHorizontal;
+    padding-right: $tableCaptionPaddingHorizontal;
+    padding-top: $tableCaptionPaddingVertical;
+}

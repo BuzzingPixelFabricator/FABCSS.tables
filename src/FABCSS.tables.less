@@ -6,6 +6,7 @@
     # http://www.apache.org/licenses/LICENSE-2.0
 \*----------------------------------------------------------------------------*/
 
+
 /**
  * Variables
  */
@@ -25,9 +26,11 @@
 @tableCaptionPaddingVertical: 12px;
 @tableCaptionPaddingHorizontal: @tableCellPaddingHorizontal;
 
+
 /**
  * Table styling
  */
+
 .fab-table-bordered () when (@tableBordered = true) {
     border-bottom: 1px solid @tableCellBorderColor;
     .caption {
@@ -79,6 +82,7 @@
     .tdLineHeight () when not (@tableCellLineHeight = false) {
         line-height: @tableCellLineHeight;
     }
+    .tdLineHeight();
 }
 .thead,
 .tfoot {
